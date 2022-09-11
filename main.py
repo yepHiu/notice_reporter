@@ -1,7 +1,7 @@
 import re
 from bs4 import BeautifulSoup
 import requests
-import prettytable
+import prettytable as pt
 
 
 
@@ -46,13 +46,13 @@ def notice_filter(text):
     return buffer
 
 def print_screen(data:list):
-    print('分类'.ljust(8, ' '), '部门'.ljust(8, ' '),'标题'.ljust(8, ' '), '时间'.ljust(8, ' '))
+    table=pt.PrettyTable(['分类','部门','标题','时间'])
     for i in data:
-        print('''{}\t{}\t{}\t{}'''.format(i['category'],i['organization'],i['title'],i['time']))
+        table.add_row([i['category'],i['organization'],i['title'],i['time']])
+    print(table)
 
 def main():
     print_screen(notice_filter(request_url()))
-    print(notice_filter(request_url()))
 
 if __name__=='__main__':
     main()
