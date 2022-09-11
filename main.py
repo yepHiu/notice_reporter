@@ -47,6 +47,8 @@ def notice_filter(text):
 
 def print_screen(data:list):
     table=pt.PrettyTable(['分类','部门','标题','时间'])
+    table.align='l'
+    table.valign='t'
     for i in data:
         table.add_row([i['category'],i['organization'],i['title'],i['time']])
     print(table)
