@@ -2,6 +2,7 @@ import re
 from bs4 import BeautifulSoup
 import requests
 import prettytable as pt
+import os
 
 
 
@@ -52,6 +53,9 @@ def print_screen(data:list):
     for i in data:
         table.add_row([i['category'],i['organization'],i['title'],i['time']])
     print(table)
+    _json=table.get_json_string()
+    with open('notice_json.json','w+') as f:
+        f.write(_json)
 
 def main():
     print_screen(notice_filter(request_url()))
